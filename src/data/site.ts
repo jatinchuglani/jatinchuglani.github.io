@@ -5,7 +5,7 @@ export const site = {
   last: 'Chuglani',
   role: 'Senior product manager at Salesforce. AI and analytics.',
   description:
-    'Senior product manager for AI and analytics. Public AI builds and how I work with AI.',
+    'Senior product manager for AI and analytics. Hands-on with agents, harnesses and MCP. Public AI builds.',
   url: 'https://jatinchuglani.github.io',
   links: {
     github: 'https://github.com/jatinchuglani',
@@ -39,6 +39,12 @@ export const builds = [
     meta: 'HTML, JavaScript',
     href: 'https://github.com/jatinchuglani/exercise-timer',
   },
+];
+
+export const stack = [
+  { name: 'Agents', line: 'Parallel subagents for research, review and drafting.' },
+  { name: 'Harnesses', line: 'Claude Code setups: skills, hooks, memory, scheduled jobs.' },
+  { name: 'MCP', line: 'Servers wired to Slack, Drive, GitHub and data tools.' },
 ];
 
 export const flow = [

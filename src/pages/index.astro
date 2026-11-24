@@ -1,6 +1,6 @@
 ---
 import Base from '../layouts/Base.astro';
-import { site, builds, flow } from '../data/site';
+import { site, builds, stack, flow } from '../data/site';
 
 const { github, linkedin, email } = site.links;
 ---
@@ -20,6 +20,13 @@ const { github, linkedin, email } = site.links;
         {email && <a href={`mailto:${email}`}>Email</a>}
       </p>
     </header>
+
+    <section class="section" aria-labelledby="stack">
+      <h2 id="stack">Hands-on with</h2>
+      <ul class="stack">
+        {stack.map((s) => <li><h3>{s.name}</h3><p>{s.line}</p></li>)}
+      </ul>
+    </section>
 
     <section class="section" aria-labelledby="builds">
       <h2 id="builds">Builds</h2>
