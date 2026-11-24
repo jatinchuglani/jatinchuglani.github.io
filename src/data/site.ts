@@ -17,7 +17,7 @@ export const site = {
 export const builds = [
   {
     name: 'claude-skills',
-    what: 'Reusable skills for Claude Code: Office files, deck builder, LLM wiki pattern.',
+    what: 'Reusable skills for Claude Code: deck builder, UI prototype builder, Office files, LLM wiki pattern.',
     meta: 'Claude Code, Markdown',
     href: 'https://github.com/jatinchuglani/claude-skills',
   },
