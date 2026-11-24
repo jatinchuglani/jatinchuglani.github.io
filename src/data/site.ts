@@ -5,11 +5,11 @@ export const site = {
   last: 'Chuglani',
   role: 'Senior product manager at Salesforce. AI and analytics.',
   description:
-    'Senior product manager for AI and analytics. Case studies and public AI builds.',
+    'Senior product manager for AI and analytics. Public AI builds and how I work with AI.',
   url: 'https://jatinchuglani.github.io',
   links: {
     github: 'https://github.com/jatinchuglani',
-    linkedin: '',
+    linkedin: 'https://www.linkedin.com/in/jatin-chuglani/',
     email: '',
   },
 };
