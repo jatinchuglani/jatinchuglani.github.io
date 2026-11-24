@@ -42,9 +42,9 @@ export const builds = [
 ];
 
 export const stack = [
-  { name: 'Agents', line: 'Parallel subagents for research, review and drafting.' },
+  { name: 'Agents', line: 'Shipped the CRM Analytics subagent. Parallel subagents for research and review.' },
   { name: 'Harnesses', line: 'Claude Code setups: skills, hooks, memory, scheduled jobs.' },
-  { name: 'MCP', line: 'Servers wired to Slack, Drive, GitHub and data tools.' },
+  { name: 'MCP', line: 'Shipped the CRM Analytics MCP server. Others wired to Slack, Drive and GitHub.' },
 ];
 
 export const flow = [
