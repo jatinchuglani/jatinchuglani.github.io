@@ -96,7 +96,12 @@ s.over {
   padding-block: 1.25rem; border-bottom: 1px solid var(--rule); text-decoration: none;
 }
 .builds li:first-child a { padding-top: 0; }
-.builds h3 { font-size: 1.6rem; font-weight: 700; }
+.builds h3 {
+  font-size: 1.6rem; font-weight: 700;
+  text-decoration: underline; text-decoration-color: var(--cobalt);
+  text-decoration-thickness: 0.08em; text-underline-offset: 0.2em;
+}
+.builds h3::after { content: ' \2197'; color: var(--cobalt); font-weight: 600; }
 .builds p { font-size: 1.05rem; }
 .builds small { display: block; margin-top: 0.3rem; color: var(--slate); font-size: 0.9rem; }
 .builds a:hover h3, .builds a:focus-visible h3 { background: linear-gradient(transparent 52%, var(--marker) 52% 94%, transparent 94%); }
@@ -107,6 +112,8 @@ s.over {
 .stack li { padding-top: 1rem; border-top: 2px solid var(--ink); }
 .stack h3 { font-size: 1.35rem; font-weight: 700; margin-bottom: 0.4rem; }
 .stack p { font-size: 1rem; line-height: 1.45; color: var(--slate); }
+.stack .doc-link { margin-top: 0.6rem; font-weight: 600; }
+.stack .doc-link a { color: var(--ink); }
 @media (max-width: 52rem) { .stack { grid-template-columns: 1fr; gap: 1.5rem; } }
 .flow { display: grid; grid-template-columns: repeat(5, 1fr); gap: 1rem; counter-reset: none; }
 .flow li { position: relative; padding-top: 1.6rem; border-top: 2px solid var(--ink); }

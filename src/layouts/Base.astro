@@ -4,11 +4,38 @@ import '@fontsource-variable/source-serif-4/index.css';
 import '../styles/global.css';
 import { site } from '../data/site';
 
-interface Props { title?: string; description?: string }
-const { title, description = site.description } = Astro.props;
-const fullTitle = title ? `${title} | ${site.name}` : `${site.name}, senior product manager`;
+interface Props {
+  title?: string;
+  description?: string;
+  noindex?: boolean;
+  jsonLd?: Record<string, unknown>[];
+}
+const { title, description = site.description, noindex = false, jsonLd = [] } = Astro.props;
+const fullTitle = title ? `${title} | ${site.name}` : `${site.name}, senior AI product manager`;
 const canonical = new URL(Astro.url.pathname, site.url).href;
 const og = new URL('/og.png', site.url).href;
+const sameAs = [site.links.github, site.links.linkedin].filter(Boolean);
+
+const person = {
+  '@type': 'Person',
+  '@id': `${site.url}/#person`,
+  name: site.name,
+  url: site.url,
+  image: og,
+  jobTitle: site.jobTitle,
+  description,
+  worksFor: { '@type': 'Organization', ...site.employer },
+  knowsAbout: site.topics,
+  sameAs,
+};
+const graph = {
+  '@context': 'https://schema.org',
+  '@graph': [
+    { '@type': 'WebSite', '@id': `${site.url}/#website`, url: site.url, name: site.name, inLanguage: 'en', publisher: { '@id': person['@id'] } },
+    { '@type': 'ProfilePage', '@id': `${canonical}#page`, url: canonical, name: fullTitle, isPartOf: { '@id': `${site.url}/#website` }, mainEntity: person },
+    ...jsonLd,
+  ],
+};
 ---
 <!doctype html>
 <html lang="en">
@@ -17,15 +44,31 @@ const og = new URL('/og.png', site.url).href;
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>{fullTitle}</title>
     <meta name="description" content={description} />
+    <meta name="author" content={site.name} />
+    {site.googleVerification && <meta name="google-site-verification" content={site.googleVerification} />}
+    <meta name="robots" content={noindex ? 'noindex, follow' : 'index, follow, max-image-preview:large, max-snippet:-1'} />
     <link rel="canonical" href={canonical} />
+    <link rel="sitemap" type="application/xml" href="/sitemap.xml" />
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="icon" href="/favicon.ico" sizes="32x32" />
+    {sameAs.map((href) => <link rel="me" href={href} />)}
     <meta name="theme-color" content="#eff2f6" />
     <meta property="og:type" content="website" />
+    <meta property="og:site_name" content={site.name} />
+    <meta property="og:locale" content="en_US" />
     <meta property="og:title" content={fullTitle} />
     <meta property="og:description" content={description} />
     <meta property="og:url" content={canonical} />
     <meta property="og:image" content={og} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content={site.ogAlt} />
     <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={fullTitle} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={og} />
+    <meta name="twitter:image:alt" content={site.ogAlt} />
+    {!noindex && <script type="application/ld+json" set:html={JSON.stringify(graph)} />}
   </head>
   <body>
     <a class="skip" href="#main">Skip to content</a>

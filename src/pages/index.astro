@@ -3,8 +3,24 @@ import Base from '../layouts/Base.astro';
 import { site, builds, stack, flow } from '../data/site';
 
 const { github, linkedin, email } = site.links;
+
+const buildsLd = {
+  '@type': 'ItemList',
+  name: 'Builds',
+  itemListElement: builds.map((b, i) => ({
+    '@type': 'ListItem',
+    position: i + 1,
+    item: {
+      '@type': 'SoftwareSourceCode',
+      name: b.name,
+      description: b.what,
+      codeRepository: b.href,
+      author: { '@id': `${site.url}/#person` },
+    },
+  })),
+};
 ---
-<Base>
+<Base jsonLd={[buildsLd]}>
   <div class="wrap">
     <header class="hero">
       <h1>{site.first}<br />{site.last}</h1>
@@ -24,7 +40,13 @@ const { github, linkedin, email } = site.links;
     <section class="section" aria-labelledby="stack">
       <h2 id="stack">Hands-on with</h2>
       <ul class="stack">
-        {stack.map((s) => <li><h3>{s.name}</h3><p>{s.line}</p></li>)}
+        {stack.map((s) => (
+          <li>
+            <h3>{s.name}</h3>
+            <p>{s.line}</p>
+            {s.docs && <p class="doc-link"><a href={s.docs.href}>{s.docs.label}</a></p>}
+          </li>
+        ))}
       </ul>
     </section>
 
@@ -48,7 +70,7 @@ const { github, linkedin, email } = site.links;
         <ol class="flow">
           {flow.map((f) => <li><h3>{f.step}</h3><p>{f.line}</p></li>)}
         </ol>
-        <p class="flow-note">The skills are public: <a href={builds[0].href}>claude-skills</a>.</p>
+        <p class="flow-note">The skills are public: <a href={builds[0].href}>see them on GitHub</a>.</p>
       </div>
     </section>
   </div>

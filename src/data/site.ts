@@ -3,10 +3,17 @@ export const site = {
   name: 'Jatin Chuglani',
   first: 'Jatin',
   last: 'Chuglani',
-  role: 'Senior product manager at Salesforce. AI and analytics.',
+  role: 'Senior AI product manager at Salesforce. Analytics and agents.',
   description:
-    'Senior product manager for AI and analytics. Hands-on with agents, harnesses and MCP. Public AI builds.',
+    'Senior AI product manager focused on analytics. Hands-on with agents, harnesses and MCP. Public AI builds.',
   url: 'https://jatinchuglani.github.io',
+  // Used for structured data and llms.txt, not shown on the page.
+  jobTitle: 'Senior AI Product Manager',
+  employer: { name: 'Salesforce', url: 'https://www.salesforce.com' },
+  topics: ['AI agents', 'Model Context Protocol (MCP)', 'CRM Analytics', 'Analytics', 'Product management'],
+  // Search Console verification token (the part after "google-site-verification="). Empty hides the tag.
+  googleVerification: 'UTQPBXsgSesNJsZ_2hsAGY-QSzWQj0Jy86oJ08zslog',
+  ogAlt: 'Jatin Chuglani, senior AI product manager at Salesforce',
   links: {
     github: 'https://github.com/jatinchuglani',
     linkedin: 'https://www.linkedin.com/in/jatin-chuglani/',
@@ -44,12 +51,20 @@ export const builds = [
 export const stack = [
   { name: 'Agents', line: 'Shipped the CRM Analytics subagent. Parallel subagents for research and review.' },
   { name: 'Harnesses', line: 'Claude Code setups: skills, hooks, memory, scheduled jobs.' },
-  { name: 'MCP', line: 'Shipped the CRM Analytics MCP server. Others wired to Slack, Drive and GitHub.' },
+  {
+    name: 'MCP',
+    line: 'Shipped the CRM Analytics MCP server. Others wired to Slack, Drive and GitHub.',
+    docs: {
+      label: 'CRM Analytics MCP docs',
+      summary: 'Public Salesforce documentation for the CRM Analytics MCP server.',
+      href: 'https://help.salesforce.com/s/articleView?id=analytics.bi_mcp_coworker_overview.htm&type=5',
+    },
+  },
 ];
 
 export const flow = [
   { step: 'Notes', line: 'Calls, docs and threads stay untouched.' },
-  { step: 'Wiki', line: 'Claude keeps pages current and linked.' },
+  { step: 'Wiki', line: 'AI keeps pages current and linked.' },
   { step: 'Skills', line: 'Repeatable jobs: decks, PRDs, data pulls.' },
   { step: 'Agents', line: 'Parallel research and review.' },
   { step: 'Me', line: 'I decide and sign off.' },
