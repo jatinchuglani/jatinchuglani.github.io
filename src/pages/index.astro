@@ -1,0 +1,70 @@
+---
+import { getCollection } from 'astro:content';
+import Base from '../layouts/Base.astro';
+import { site, builds, flow } from '../data/site';
+
+const work = (await getCollection('work', ({ data }) => import.meta.env.DEV || !data.draft))
+  .sort((a, b) => a.data.order - b.data.order);
+const { github, linkedin, email } = site.links;
+---
+<Base>
+  <div class="wrap">
+    <header class="hero">
+      <h1>{site.first}<br />{site.last}</h1>
+      <p class="role">{site.role}</p>
+      <dl class="ledger" aria-label="How I decide">
+        <dt>Chose</dt><dd><mark>A working prototype</mark></dd>
+        <dt>Over</dt><dd><s class="over">A 20-page spec</s></dd>
+        <dt>Because</dt><dd class="because">People react to real things.</dd>
+      </dl>
+      <p class="links">
+        {github && <a href={github}>GitHub</a>}
+        {linkedin && <a href={linkedin}>LinkedIn</a>}
+        {email && <a href={`mailto:${email}`}>Email</a>}
+      </p>
+    </header>
+
+    {work.length > 0 && (
+      <section class="section" aria-labelledby="decisions">
+        <h2 id="decisions">Decisions</h2>
+        <ul class="work-list">
+          {work.map((w) => (
+            <li>
+              <a href={`/work/${w.id}/`}>
+                <h3>{w.data.title}{w.data.draft && <span class="tag">draft</span>}</h3>
+                <dl class="ledger">
+                  <dt>Chose</dt><dd><mark>{w.data.chose}</mark></dd>
+                  <dt>Over</dt><dd><s class="over">{w.data.over}</s></dd>
+                </dl>
+              </a>
+            </li>
+          ))}
+        </ul>
+      </section>
+    )}
+
+    <section class="section" aria-labelledby="builds">
+      <h2 id="builds">Builds</h2>
+      <ul class="builds">
+        {builds.map((b) => (
+          <li>
+            <a href={b.href}>
+              <h3>{b.name}</h3>
+              <div><p>{b.what}</p><small>{b.meta}</small></div>
+            </a>
+          </li>
+        ))}
+      </ul>
+    </section>
+
+    <section class="section" aria-labelledby="ai">
+      <h2 id="ai">How I work with AI</h2>
+      <div>
+        <ol class="flow">
+          {flow.map((f) => <li><h3>{f.step}</h3><p>{f.line}</p></li>)}
+        </ol>
+        <p class="flow-note">The skills are public: <a href={builds[0].href}>claude-skills</a>.</p>
+      </div>
+    </section>
+  </div>
+</Base>

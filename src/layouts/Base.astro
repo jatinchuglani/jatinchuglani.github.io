@@ -1,0 +1,41 @@
+---
+import '@fontsource-variable/bricolage-grotesque/index.css';
+import '@fontsource-variable/source-serif-4/index.css';
+import '../styles/global.css';
+import { site } from '../data/site';
+
+interface Props { title?: string; description?: string }
+const { title, description = site.description } = Astro.props;
+const fullTitle = title ? `${title} | ${site.name}` : `${site.name}, senior product manager`;
+const canonical = new URL(Astro.url.pathname, site.url).href;
+const og = new URL('/og.png', site.url).href;
+---
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{fullTitle}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonical} />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <meta name="theme-color" content="#eff2f6" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content={fullTitle} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:image" content={og} />
+    <meta name="twitter:card" content="summary_large_image" />
+  </head>
+  <body>
+    <a class="skip" href="#main">Skip to content</a>
+    <main id="main"><slot /></main>
+    <footer class="wrap footer">
+      <span>{site.name}</span>
+      <span>
+        {site.links.github && <a href={site.links.github}>GitHub</a>}
+        {site.links.linkedin && <> <a href={site.links.linkedin}>LinkedIn</a></>}
+      </span>
+    </footer>
+  </body>
+</html>
