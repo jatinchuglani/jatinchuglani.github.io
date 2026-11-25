@@ -64,8 +64,7 @@ s.over {
 /* Hero */
 .hero { padding-block: clamp(3rem, 9vw, 7rem) clamp(3rem, 8vw, 6rem); }
 .hero h1 { font-weight: 800; font-size: clamp(4rem, 15vw, 11.5rem); letter-spacing: -0.045em; line-height: 0.88; }
-.hero .tagline { margin-top: 1.75rem; font-family: var(--display); font-weight: 700; font-size: clamp(1.5rem, 3.4vw, 2.3rem); line-height: 1.15; letter-spacing: -0.02em; max-width: 30rem; text-wrap: balance; }
-.hero .role { margin-top: 1rem; font-size: 1.1rem; max-width: 34rem; color: var(--slate); }
+.hero .role { margin-top: 1.75rem; font-size: 1.25rem; max-width: 34rem; }
 .hero .ledger { margin-top: clamp(2.5rem, 6vw, 4rem); max-width: 46rem; }
 .links { display: flex; flex-wrap: wrap; gap: 0.5rem 1.75rem; margin-top: 2.5rem; font-family: var(--display); font-weight: 600; }
 
