@@ -3,9 +3,10 @@ export const site = {
   name: 'Jatin Chuglani',
   first: 'Jatin',
   last: 'Chuglani',
+  tagline: 'Markdown files and working prototypes. Humans and agents, building together.',
   role: 'Senior AI product manager at Salesforce. Analytics and agents.',
   description:
-    'Senior AI product manager focused on analytics. Hands-on with agents, harnesses and MCP. Public AI builds.',
+    'Markdown files and working prototypes. Humans and agents, building together. Senior AI product manager, hands-on with agents, harnesses and MCP.',
   url: 'https://jatinchuglani.github.io',
   // Used for structured data and llms.txt, not shown on the page.
   jobTitle: 'Senior AI Product Manager',
